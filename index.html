@@ -531,7 +531,10 @@ function openGal(platId, prefix) {
   container.innerHTML = '';
   var existing = galData[platId] || [];
   for (var i = 0; i < 12; i++) {
-    container.appendChild(makeGalRow(i + 1, existing[i] || ''));
+    // If no saved URL, prefill with the local folder convention
+    var localPath = 'imagenes/' + platId + '-' + (i + 1) + '.jpg';
+    var val = existing[i] !== undefined ? existing[i] : localPath;
+    container.appendChild(makeGalRow(i + 1, val));
   }
   document.getElementById('galBackdrop').classList.add('open');
   document.body.style.overflow = 'hidden';
