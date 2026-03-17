@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)file:///Users/matiaslarroza/Downloads/onboarding_benchmark%20(15).html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchmark de Onboarding HR</title>
+<link href="./Benchmark de Onboarding HR_claude_files/css2" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F7F6F2; --surface: #FFFFFF; --surface2: #F0EEE8;
+    --border: #E2DED5; --border2: #C8C4BB;
+    --text: #1A1916; --text2: #6B6760; --text3: #9E9B96; --accent: #1A1916;
+    --green-bg: #EAF3DE; --green-text: #2D5A0E;
+    --amber-bg: #FAF0DA; --amber-text: #7A4A08;
+    --red-bg: #FCEBEB; --red-text: #8B2020;
+    --orange-num: #FAEEDA; --orange-num-text: #7A4A08;
+    --blue-num: #E6F1FB;  --blue-num-text: #1050A0;
+    --green-num: #EAF3DE; --green-num-text: #2D5A0E;
+    --purple-num: #EEEDFE; --purple-num-text: #4A3AAF;
+    --coral-num: #FAECE7;  --coral-num-text: #7A2E1A;
+    --radius: 10px; --radius-sm: 6px;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 48px 24px; }
+  .container { max-width: 880px; margin: 0 auto; }
+
+  .header { margin-bottom: 36px; }
+  .eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; }
+  .header h1 { font-size: 26px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 8px; }
+  .header p { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+  .copy-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 28px; }
+  .copy-bar span { font-size: 13px; color: var(--text2); }
+  .copy-btn { display: flex; align-items: center; gap: 7px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--text); background: var(--surface2); border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 7px 14px; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
+  .copy-btn:hover { background: var(--border); }
+  .copy-btn.copied { color: var(--green-text); background: var(--green-bg); border-color: #9FC97A; }
+
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+  .tab { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 6px 14px; border-radius: 999px; border: 0.5px solid var(--border2); background: transparent; color: var(--text2); cursor: pointer; transition: all 0.15s; }
+  .tab:hover { background: var(--surface2); color: var(--text); }
+  .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 500; }
+
+  .platform { display: none; }
+  .platform.active { display: block; }
+  .plat-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .plat-header { padding: 20px 24px 16px; border-bottom: 0.5px solid var(--border); }
+  .plat-title { font-size: 17px; font-weight: 500; margin-bottom: 3px; }
+  .plat-sub { font-size: 12px; color: var(--text3); font-family: 'DM Mono', monospace; letter-spacing: 0.03em; }
+
+  .steps { padding: 4px 0; }
+  .step { display: flex; gap: 16px; padding: 18px 24px; border-bottom: 0.5px solid var(--border); }
+  .step:last-child { border-bottom: none; }
+  .step-num { min-width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; margin-top: 1px; font-family: 'DM Mono', monospace; }
+  .n-orange { background: var(--orange-num); color: var(--orange-num-text); }
+  .n-blue   { background: var(--blue-num);   color: var(--blue-num-text); }
+  .n-green  { background: var(--green-num);  color: var(--green-num-text); }
+  .n-purple { background: var(--purple-num); color: var(--purple-num-text); }
+  .n-coral  { background: var(--coral-num);  color: var(--coral-num-text); }
+  .step-body { flex: 1; }
+  .step-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .step-desc b { font-weight: 500; color: var(--text); }
+
+  .access-box { border-top: 0.5px solid var(--border); }
+  .access-header { padding: 12px 24px; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 9px; border-bottom: 0.5px solid var(--border); }
+  .access-body { padding: 14px 24px; font-size: 13px; color: var(--text2); line-height: 1.65; }
+  .access-body b { font-weight: 500; color: var(--text); }
+  .yes-header     { background: var(--green-bg); color: var(--green-text); }
+  .partial-header { background: var(--amber-bg); color: var(--amber-text); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .dot-yes     { background: var(--green-text); }
+  .dot-partial { background: var(--amber-text); }
+
+  /* Screenshots */
+  .screenshots { padding: 20px 24px; border-top: 0.5px solid var(--border); background: var(--surface2); }
+  .screenshots-label { font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; }
+  .screenshots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+  /* Every slot: real image or empty placeholder */
+  .sc {
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .sc:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .sc img { width: 100%; height: 130px; object-fit: cover; display: block; }
+
+  /* Expand icon overlay on hover (loaded images only) */
+  .sc-overlay {
+    position: absolute; inset: 0;
+    background: rgba(26,25,22,0);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+    pointer-events: none;
+  }
+  .sc:hover .sc-overlay { background: rgba(26,25,22,0.28); }
+  .sc-overlay svg { opacity: 0; transition: opacity 0.15s; }
+  .sc:hover .sc-overlay svg { opacity: 1; }
+
+  /* Replace button — shown on hover over loaded images */
+  .sc-replace {
+    position: absolute; bottom: 30px; right: 6px;
+    display: flex; align-items: center; gap: 5px;
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+    color: #fff; background: rgba(26,25,22,0.75);
+    border: 0.5px solid rgba(255,255,255,0.25);
+    border-radius: var(--radius-sm); padding: 4px 9px;
+    cursor: pointer; opacity: 0; transition: opacity 0.15s;
+    pointer-events: none; z-index: 5;
+  }
+  .sc:hover .sc-replace { opacity: 1; pointer-events: auto; }
+  .sc-replace:hover { background: rgba(26,25,22,0.95); }
+
+  .sc-caption { font-size: 11px; color: var(--text2); padding: 5px 8px; border-top: 0.5px solid var(--border); line-height: 1.4; }
+
+  /* Empty slot — always visible add button */
+  .sc-empty {
+    height: 130px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; background: var(--surface2); cursor: pointer;
+    transition: background 0.15s;
+  }
+  .sc-empty:hover { background: var(--border); }
+  .sc-empty svg { opacity: 0.3; }
+  .sc-empty span {
+    font-size: 11px; font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em; color: var(--text3);
+  }
+  .sc.empty { cursor: pointer; }
+  .sc.empty:hover { border-color: var(--border2); }
+
+  /* Lightbox */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(15,14,12,0.82); align-items: center; justify-content: center; padding: 24px; animation: lbIn 0.18s ease; }
+  .lightbox.open { display: flex; }
+  @keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
+  .lightbox-inner { position: relative; max-width: 860px; width: 100%; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border2); animation: lbUp 0.2s ease; }
+  @keyframes lbUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .lightbox-img-wrap { background: #111; line-height: 0; }
+  .lightbox-img-wrap img { width: 100%; max-height: 520px; object-fit: contain; display: block; }
+  .lightbox-footer { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-top: 0.5px solid var(--border); }
+  .lightbox-caption { font-size: 13px; color: var(--text2); }
+  .lightbox-close { display: flex; align-items: center; gap: 6px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: var(--text2); background: var(--surface2); border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 6px 12px; cursor: pointer; transition: background 0.12s; }
+  .lightbox-close:hover { background: var(--border); color: var(--text); }
+
+  .footer { margin-top: 32px; font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace; letter-spacing: 0.03em; text-align: center; }
+
+  /* Image picker modal */
+  .picker-backdrop {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(15,14,12,0.55);
+    align-items: center; justify-content: center;
+  }
+  .picker-backdrop.open { display: flex; }
+  .picker-modal {
+    background: var(--surface); border-radius: var(--radius);
+    border: 0.5px solid var(--border2);
+    width: 100%; max-width: 400px; padding: 24px;
+    animation: lbUp 0.18s ease;
+  }
+  .picker-title {
+    font-size: 15px; font-weight: 500; color: var(--text);
+    margin-bottom: 18px;
+  }
+  .picker-options { display: flex; gap: 10px; margin-bottom: 20px; }
+  .picker-opt {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 8px;
+    padding: 16px 10px; border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border2); background: var(--surface2);
+    cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--text2);
+  }
+  .picker-opt:hover { border-color: var(--accent); color: var(--text); background: var(--surface); }
+  .picker-opt svg { opacity: 0.6; }
+  .picker-opt:hover svg { opacity: 1; }
+  .picker-divider {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; color: var(--text3); margin-bottom: 14px;
+    font-family: 'DM Mono', monospace;
+  }
+  .picker-divider::before, .picker-divider::after {
+    content: ''; flex: 1; height: 0.5px; background: var(--border);
+  }
+  .picker-url-row { display: flex; gap: 8px; }
+  .picker-url-input {
+    flex: 1; font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: var(--text); background: var(--surface2);
+    border: 0.5px solid var(--border2); border-radius: var(--radius-sm);
+    padding: 8px 12px; outline: none; transition: border-color 0.15s;
+  }
+  .picker-url-input:focus { border-color: var(--accent); }
+  .picker-url-input::placeholder { color: var(--text3); }
+  .picker-url-btn {
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    color: #fff; background: var(--accent);
+    border: none; border-radius: var(--radius-sm);
+    padding: 8px 16px; cursor: pointer; white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+  .picker-url-btn:hover { opacity: 0.85; }
+  .picker-cancel {
+    display: block; width: 100%; margin-top: 12px; text-align: center;
+    font-family: 'DM Sans', sans-serif; font-size: 12px;
+    color: var(--text3); background: none; border: none;
+    cursor: pointer; padding: 4px;
+  }
+  .picker-cancel:hover { color: var(--text2); }
+  .picker-error {
+    font-size: 11px; color: var(--red-text); margin-top: 8px;
+    display: none; font-family: 'DM Mono', monospace;
+  }
+  .picker-error.show { display: block; }
+
+  .screenshots-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .screenshots-edit-btn { display: flex; align-items: center; gap: 6px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: var(--text2); background: var(--surface); border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 5px 11px; cursor: pointer; transition: background 0.12s; }
+  .screenshots-edit-btn:hover { background: var(--border); color: var(--text); }
+  .sc-empty-state { grid-column: 1/-1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px 0; color: var(--text3); font-size: 13px; }
+  .sc-empty-state svg { opacity: 0.22; }
+  .gal-backdrop { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(15,14,12,0.6); align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; }
+  .gal-backdrop.open { display: flex; }
+  .gal-modal { background: var(--surface); border-radius: var(--radius); border: 0.5px solid var(--border2); width: 100%; max-width: 580px; padding: 28px; margin: auto; }
+  .gal-title { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .gal-sub { font-size: 13px; color: var(--text2); margin-bottom: 20px; line-height: 1.5; }
+  .gal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
+  .gal-row { display: flex; flex-direction: column; gap: 4px; }
+  .gal-row-num { font-size: 10px; font-family: 'DM Mono', monospace; color: var(--text3); letter-spacing: 0.06em; }
+  .gal-row-top { display: flex; align-items: center; gap: 6px; }
+  .gal-drag-handle { display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; cursor: grab; opacity: 0.35; transition: opacity 0.12s; }
+  .gal-drag-handle:hover { opacity: 0.8; }
+  .gal-drag-handle:active { cursor: grabbing; }
+  .gal-row.dragging { opacity: 0.4; }
+  .gal-row.drag-over { border-top: 2px solid var(--accent); margin-top: -2px; }
+  .gal-input { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--text); background: var(--surface2); border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 7px 10px; outline: none; width: 100%; transition: border-color 0.15s; }
+  .gal-input:focus { border-color: var(--accent); background: var(--surface); }
+  .gal-input::placeholder { color: var(--text3); }
+  .gal-actions { display: flex; align-items: center; gap: 10px; }
+  .gal-generate { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #fff; background: var(--accent); border: none; border-radius: var(--radius-sm); padding: 10px 20px; cursor: pointer; transition: opacity 0.15s; }
+  .gal-generate:hover { opacity: 0.85; }
+  .gal-cancel { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text2); background: none; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 10px 16px; cursor: pointer; }
+  .gal-cancel:hover { background: var(--surface2); }
+  .gal-clear-btn { margin-left: auto; font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; padding: 4px 8px; }
+  .gal-clear-btn:hover { color: var(--text2); }
+</style>
+</head>
+<body style="">
+<div class="gal-backdrop" id="galBackdrop" onclick="closeGalBg(event)"><div class="gal-modal"><div class="gal-title">Galería de capturas</div><p class="gal-sub" id="galSub">Pegá los links de hasta 12 imágenes para 🟣 Connecteam. Dejá vacíos los que no uses.</p><div class="gal-grid" id="galInputs"><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 1</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 2</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 3</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 4</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 5</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 6</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 7</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 8</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 9</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 10</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 11</div></div><input class="gal-input" type="text" placeholder="https://..."></div><div class="gal-row" draggable="false"><div class="gal-row-top"><div class="gal-drag-handle" title="Mover"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"></circle><circle cx="8" cy="2" r="1" fill="currentColor"></circle><circle cx="4" cy="6" r="1" fill="currentColor"></circle><circle cx="8" cy="6" r="1" fill="currentColor"></circle><circle cx="4" cy="10" r="1" fill="currentColor"></circle><circle cx="8" cy="10" r="1" fill="currentColor"></circle></svg></div><div class="gal-row-num">Imagen 12</div></div><input class="gal-input" type="text" placeholder="https://..."></div></div><div class="gal-actions"><button class="gal-cancel" onclick="closeGal()">Cancelar</button><button class="gal-clear-btn" onclick="clearGal()">Limpiar todo</button><button class="gal-generate" onclick="generateGallery()">Generar galería</button></div></div></div>
+<div class="lightbox" id="lightbox" onclick="closeLightboxBg(event)"><div class="lightbox-inner"><div class="lightbox-img-wrap"><img id="lb-img" src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_21_11_p_m.png" alt="Captura 2"></div><div class="lightbox-footer"><span class="lightbox-caption" id="lb-caption">Captura 2</span><button class="lightbox-close" onclick="closeLightbox()"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 1.5l10 10M11.5 1.5l-10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>Cerrar</button></div></div></div>
+
+<div class="container">
+  <div class="header">
+    <p class="eyebrow">Benchmark · Plataformas HR · 2025–2026</p>
+    <h1>Paso a paso: agregar un colaborador y generar su onboarding</h1>
+    <p>Detalle de cada flujo + acceso antes de la fecha de inicio — 6 plataformas comparadas</p>
+  </div>
+
+  <div class="copy-bar">
+    <span>Copiá el contenido completo de la plataforma activa</span>
+    <button class="copy-btn" id="copyBtn" onclick="copyContent()">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="4.5" y="0.5" width="10" height="12" rx="1.5" stroke="currentColor"></rect><rect x="0.5" y="3.5" width="10" height="11" rx="1.5" stroke="currentColor" fill="white"></rect></svg>
+      Copiar al portapapeles
+    </button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab" onclick="show(&#39;factorial&#39;,this)">🟠 Factorial</button>
+    <button class="tab" onclick="show(&#39;hibob&#39;,this)">🔵 Hibob</button>
+    <button class="tab" onclick="show(&#39;bamboo&#39;,this)">🟢 BambooHR</button>
+    <button class="tab" onclick="show(&#39;homebase&#39;,this)">🟡 Homebase</button>
+    <button class="tab active" onclick="show(&#39;connecteam&#39;,this)">🟣 Connecteam</button>
+    <button class="tab" onclick="show(&#39;lattice&#39;,this)">🔴 Lattice</button>
+  </div>
+
+  <!-- ====== FACTORIAL ====== -->
+  <div class="platform" id="factorial">
+    <div class="plat-card" id="content-factorial">
+      <div class="plat-header">
+        <div class="plat-title">🟠 Factorial</div>
+        <div class="plat-sub">Plataforma todo-en-uno · PYMEs en Europa y LATAM</div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num n-orange">1</div><div class="step-body"><div class="step-title">Crear el empleado en la plataforma</div><div class="step-desc">Desde el módulo <b>Equipo → Añadir empleado</b>, se completan datos básicos: nombre, email, puesto, departamento y <b>fecha de inicio de contrato</b>. Si el candidato viene del ATS integrado, muchos campos se autocompletán.</div></div></div>
+        <div class="step"><div class="step-num n-orange">2</div><div class="step-body"><div class="step-title">Invitar al empleado a la plataforma</div><div class="step-desc">Se envía una <b>invitación por email</b> desde Factorial. El empleado recibe el link y crea su contraseña. Este paso es obligatorio: <b>solo los empleados invitados pueden ser asignados a un flujo de onboarding.</b></div></div></div>
+        <div class="step"><div class="step-num n-orange">3</div><div class="step-body"><div class="step-title">Asignar un flujo (workflow) de onboarding</div><div class="step-desc">Desde <b>Workflows → Onboarding</b>, se selecciona el flujo a aplicar (puede haber varios configurados por rol, departamento o ubicación). Se asigna al empleado y se define quién completa cada tarea: el nuevo ingresante, HR o el manager.</div></div></div>
+        <div class="step"><div class="step-num n-orange">4</div><div class="step-body"><div class="step-title">El empleado completa las tareas</div><div class="step-desc">Al iniciar sesión, el colaborador es redirigido a su <b>espacio de onboarding</b> (sección "Yo"). Puede completar su perfil, firmar documentos con e-sign (vía Signaturit/eIDAS), cargar datos personales y ver el handbook. Recibe notificaciones por cada tarea pendiente.</div></div></div>
+        <div class="step"><div class="step-num n-orange">5</div><div class="step-body"><div class="step-title">HR hace seguimiento del progreso</div><div class="step-desc">Desde el panel de administración, HR puede ver el estado de cada tarea del flujo, enviar recordatorios y verificar que toda la documentación esté firmada antes del día 1.</div></div></div>
+      </div>
+      <div class="access-box">
+        <div class="access-header yes-header"><span class="dot dot-yes"></span> Acceso limitado antes de la fecha de inicio: SÍ, nativo</div>
+        <div class="access-body">Factorial tiene esta funcionalidad de forma <b>nativa y automática</b>. Antes de la fecha de inicio del contrato, el colaborador tiene <b>acceso restringido a la app móvil</b>: solo ve las funciones necesarias para completar su onboarding (firma de documentos, carga de datos personales, tareas asignadas). No tiene visibilidad sobre el resto de la plataforma (nómina, tiempo, equipo, etc.). El acceso completo se habilita automáticamente al llegar la fecha de inicio.</div>
+      </div>
+      <div class="screenshots">
+        <div class="screenshots-header">
+          <div class="screenshots-label">Capturas de pantalla</div>
+          <button class="screenshots-edit-btn" onclick="openGal(&#39;factorial&#39;,&#39;f&#39;)"><svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Editar galería</button>
+        </div>
+        <div class="screenshots-grid" id="grid-factorial"><div class="sc" id="sc-f1"><img src="./Benchmark de Onboarding HR_claude_files/factorial_11.png" alt="Captura 1" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 1</div></div><div class="sc" id="sc-f2"><img src="./Benchmark de Onboarding HR_claude_files/Factorial_2.png" alt="Captura 2" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 2</div></div><div class="sc" id="sc-f3"><img src="./Benchmark de Onboarding HR_claude_files/Factorial_3.png" alt="Captura 3" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 3</div></div><div class="sc" id="sc-f4"><img src="./Benchmark de Onboarding HR_claude_files/Factorial_4.png" alt="Captura 4" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 4</div></div><div class="sc" id="sc-f5"><img src="./Benchmark de Onboarding HR_claude_files/factorial-mobile.jpg" alt="Captura 5" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 5</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== HIBOB ====== -->
+  <div class="platform" id="hibob">
+    <div class="plat-card" id="content-hibob">
+      <div class="plat-header">
+        <div class="plat-title">🔵 Hibob (Bob)</div>
+        <div class="plat-sub">Plataforma moderna · Medianas empresas en crecimiento</div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num n-blue">1</div><div class="step-body"><div class="step-title">Crear el perfil del colaborador</div><div class="step-desc">Desde <b>People → Add New Employee</b>, se ingresan datos básicos: nombre, email, rol, departamento, manager y <b>fecha de inicio</b>. Si se usa el ATS de Bob, el candidato contratado se convierte en empleado con un clic, llevando todos sus datos.</div></div></div>
+        <div class="step"><div class="step-num n-blue">2</div><div class="step-body"><div class="step-title">Configurar y activar el flujo de preboarding</div><div class="step-desc">Desde <b>Settings → Onboarding Flows</b>, se asigna el flujo al nuevo ingresante. Bob permite flujos <b>ilimitados</b> configurados por equipo, departamento, ubicación o modalidad (presencial, remoto, híbrido). Cada flujo puede incluir tareas para HR, IT, el manager y el propio empleado.</div></div></div>
+        <div class="step"><div class="step-num n-blue">3</div><div class="step-body"><div class="step-title">El empleado accede al portal de preboarding</div><div class="step-desc">El colaborador recibe un email de bienvenida y accede al portal <b>antes de su día 1</b>. Desde allí puede: completar datos personales, firmar documentos, ver fotos y videos de cultura de la empresa, explorar el directorio de personas y revisar políticas y handbooks.</div></div></div>
+        <div class="step"><div class="step-num n-blue">4</div><div class="step-body"><div class="step-title">Ejecución automática de tareas inter-equipos</div><div class="step-desc">Bob dispara automáticamente tareas hacia <b>IT</b> (provisioning de equipos), <b>Finance</b> (configuración de payroll) y el <b>manager</b> (check-in de bienvenida). Puede integrarse con Slack y MS Teams para notificaciones en tiempo real.</div></div></div>
+        <div class="step"><div class="step-num n-blue">5</div><div class="step-body"><div class="step-title">Seguimiento y analytics de onboarding</div><div class="step-desc">HR puede monitorear el progreso de cada tarea desde un dashboard centralizado, ver qué está completado y qué está pendiente, y recopilar feedback del proceso para mejorarlo continuamente.</div></div></div>
+      </div>
+      <div class="access-box">
+        <div class="access-header yes-header"><span class="dot dot-yes"></span> Acceso limitado antes de la fecha de inicio: SÍ, por diseño</div>
+        <div class="access-body">Bob está diseñado para que el colaborador pueda acceder al portal <b>antes de su fecha de inicio</b> con un perfil de preboarding restringido. Durante esta etapa, el nuevo ingresante solo accede a: documentos asignados, tareas de onboarding, información cultural y el directorio de personas. <b>No tiene acceso</b> a nómina, time-off, performance ni módulos operativos hasta que su fecha de inicio sea efectiva. El acceso completo se activa automáticamente según la fecha configurada en su perfil.</div>
+      </div>
+      <div class="screenshots">
+        <div class="screenshots-header">
+          <div class="screenshots-label">Capturas de pantalla</div>
+          <button class="screenshots-edit-btn" onclick="openGal(&#39;hibob&#39;,&#39;h&#39;)"><svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Editar galería</button>
+        </div>
+        <div class="screenshots-grid" id="grid-hibob"><div class="sc" id="sc-h1"><img src="./Benchmark de Onboarding HR_claude_files/Untitled.png" alt="Captura 1" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 1</div></div><div class="sc" id="sc-h2"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(1).png" alt="Captura 2" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 2</div></div><div class="sc" id="sc-h3"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(3).png" alt="Captura 3" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 3</div></div><div class="sc" id="sc-h4"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(4).png" alt="Captura 4" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 4</div></div><div class="sc" id="sc-h5"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(5).png" alt="Captura 5" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 5</div></div><div class="sc" id="sc-h6"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(6).png" alt="Captura 6" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 6</div></div><div class="sc" id="sc-h7"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(7).png" alt="Captura 7" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 7</div></div><div class="sc" id="sc-h8"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(8).png" alt="Captura 8" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 8</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== BAMBOOHR ====== -->
+  <div class="platform" id="bamboo">
+    <div class="plat-card" id="content-bamboo">
+      <div class="plat-header">
+        <div class="plat-title">🟢 BambooHR</div>
+        <div class="plat-sub">Plataforma consolidada · Equipos de 20 a 500 empleados</div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num n-green">1</div><div class="step-body"><div class="step-title">Crear el registro del empleado</div><div class="step-desc">Desde <b>Add Employee</b>, se completan los datos del nuevo ingresante. Si viene del ATS de BambooHR, la información del candidato <b>se autopropaga automáticamente</b> al formulario del empleado. Se registra la fecha de contratación (hire date).</div></div></div>
+        <div class="step"><div class="step-num n-green">2</div><div class="step-body"><div class="step-title">Seleccionar documentos y enviar el New Hire Packet</div><div class="step-desc">HR selecciona qué documentos debe firmar el colaborador y hace clic en <b>"Invite to Self-Onboard"</b>. BambooHR envía automáticamente un email al nuevo ingresante para que complete y firme su documentación con e-sign.</div></div></div>
+        <div class="step"><div class="step-num n-green">3</div><div class="step-body"><div class="step-title">Asignar tareas del onboarding (checklists)</div><div class="step-desc">Desde <b>Onboarding → New Hire Packets</b>, se asignan tareas automatizadas a distintos responsables: IT, manager, buddy asignado y el propio ingresante. Cada tarea tiene fecha de vencimiento y genera recordatorios automáticos.</div></div></div>
+        <div class="step"><div class="step-num n-green">4</div><div class="step-body"><div class="step-title">El empleado completa el self-onboarding</div><div class="step-desc">El colaborador accede al portal y completa su documentación: firmas, datos bancarios, beneficios, etc. El sistema sincroniza toda la info directamente con el <b>Employee Record</b> de BambooHR, sin doble ingreso de datos.</div></div></div>
+        <div class="step"><div class="step-num n-green">5</div><div class="step-body"><div class="step-title">HR monitorea el progreso desde el Onboarding Tab</div><div class="step-desc">BambooHR tiene un <b>tab de Onboarding</b> dedicado donde HR ve el estado de todas las tareas y documentos de cada nuevo ingresante, con notificaciones automáticas configurables.</div></div></div>
+      </div>
+      <div class="access-box">
+        <div class="access-header partial-header"><span class="dot dot-partial"></span> Acceso limitado antes de la fecha de inicio: PARCIAL</div>
+        <div class="access-body">BambooHR permite <b>enviar el New Hire Packet antes del día 1</b> para firma anticipada de documentos. Sin embargo, <b>no existe un modo de preboarding con acceso restringido nativo</b> automático. El colaborador recibe acceso al sistema como empleado activo desde que HR lo invita. Para limitar visibilidad, HR debe configurar manualmente un <b>Access Level personalizado</b> que restrinja nómina, time-off y otros módulos sensibles.</div>
+      </div>
+      <div class="screenshots">
+        <div class="screenshots-header">
+          <div class="screenshots-label">Capturas de pantalla</div>
+          <button class="screenshots-edit-btn" onclick="openGal(&#39;bamboo&#39;,&#39;b&#39;)"><svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Editar galería</button>
+        </div>
+        <div class="screenshots-grid" id="grid-bamboo"><div class="sc" id="sc-b1"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(9).png" alt="Captura 1" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 1</div></div><div class="sc" id="sc-b2"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(10).png" alt="Captura 2" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 2</div></div><div class="sc" id="sc-b3"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(11).png" alt="Captura 3" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 3</div></div><div class="sc" id="sc-b4"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(12).png" alt="Captura 4" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 4</div></div><div class="sc" id="sc-b5"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(13).png" alt="Captura 5" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 5</div></div><div class="sc" id="sc-b6"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(14).png" alt="Captura 6" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 6</div></div><div class="sc" id="sc-b7"><img src="./Benchmark de Onboarding HR_claude_files/Untitled_(15).png" alt="Captura 7" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 7</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== HOMEBASE ====== -->
+  <div class="platform" id="homebase">
+    <div class="plat-card" id="content-homebase">
+      <div class="plat-header">
+        <div class="plat-title">🟡 Homebase</div>
+        <div class="plat-sub">Plataforma para equipos por hora · Retail, gastronomía y servicios</div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num n-orange">1</div><div class="step-body"><div class="step-title">Agregar al nuevo empleado al roster</div><div class="step-desc">Desde la pestaña <b>Team → Add Team Member</b>, se ingresan los datos básicos. Si el candidato fue contratado a través del módulo de Hiring de Homebase, <b>se añade automáticamente al roster</b> sin pasos intermedios.</div></div></div>
+        <div class="step"><div class="step-num n-orange">2</div><div class="step-body"><div class="step-title">Habilitar y configurar el New Hire Packet</div><div class="step-desc">Desde <b>Team → New Hire Onboarding</b>, el owner activa el packet. Incluye por defecto los formularios W-4, I-9 y datos de depósito directo. Se pueden agregar documentos personalizados: handbook, políticas, manuales. <b>Solo el owner puede crear y ver el packet; managers solo pueden enviarlo.</b></div></div></div>
+        <div class="step"><div class="step-num n-orange">3</div><div class="step-body"><div class="step-title">Enviar el packet al nuevo ingresante</div><div class="step-desc">El sistema envía automáticamente un <b>email y/o mensaje de texto</b> al colaborador con el link para completar su onboarding desde el celular o computadora, a su ritmo.</div></div></div>
+        <div class="step"><div class="step-num n-orange">4</div><div class="step-body"><div class="step-title">El empleado completa y firma los documentos</div><div class="step-desc">El colaborador completa formularios, firma electrónicamente y sube documentación adicional. Todo queda <b>almacenado en la nube</b> por hasta 4 años.</div></div></div>
+        <div class="step"><div class="step-num n-orange">5</div><div class="step-body"><div class="step-title">Agendar el primer turno y completar la integración</div><div class="step-desc">Una vez completado el onboarding, el manager asigna el primer turno. El colaborador queda integrado al <b>sistema de mensajería</b> y al equipo operativo.</div></div></div>
+      </div>
+      <div class="access-box">
+        <div class="access-header partial-header"><span class="dot dot-partial"></span> Acceso limitado antes de la fecha de inicio: PARCIAL</div>
+        <div class="access-body">Homebase permite completar formularios y firmar documentos antes del inicio. Sin embargo, <b>no tiene un modo de acceso restringido nativo</b> para el período pre-inicio. Una vez invitado, el colaborador accede a la plataforma con su nivel estándar de miembro del equipo. El control granular debe gestionarse <b>manualmente a nivel de permisos de usuario.</b></div>
+      </div>
+      <div class="screenshots">
+        <div class="screenshots-header">
+          <div class="screenshots-label">Capturas de pantalla</div>
+          <button class="screenshots-edit-btn" onclick="openGal(&#39;homebase&#39;,&#39;ho&#39;)"><svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Editar galería</button>
+        </div>
+        <div class="screenshots-grid" id="grid-homebase"><div class="sc" id="sc-ho1"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_10_31_p_m.png" alt="Captura 1" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 1</div></div><div class="sc" id="sc-ho2"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_11_32_p_m.png" alt="Captura 2" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 2</div></div><div class="sc" id="sc-ho3"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_13_18_p_m.png" alt="Captura 3" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 3</div></div><div class="sc" id="sc-ho4"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_13_32_p_m.png" alt="Captura 4" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 4</div></div><div class="sc" id="sc-ho5"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_13_43_p_m.png" alt="Captura 5" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 5</div></div><div class="sc" id="sc-ho6"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_14_00_p_m.png" alt="Captura 6" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 6</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== CONNECTEAM ====== -->
+  <div class="platform active" id="connecteam">
+    <div class="plat-card" id="content-connecteam">
+      <div class="plat-header">
+        <div class="plat-title">🟣 Connecteam</div>
+        <div class="plat-sub">Plataforma mobile-first · Equipos deskless y sin escritorio</div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num n-purple">1</div><div class="step-body"><div class="step-title">Agregar al usuario desde el panel de administración</div><div class="step-desc">Desde la pestaña <b>Users</b>, se añade al nuevo colaborador con nombre, email o teléfono, puesto y grupo de trabajo. Si se usa el módulo de Hiring integrado, el candidato se convierte en empleado <b>con un solo clic</b>.</div></div></div>
+        <div class="step"><div class="step-num n-purple">2</div><div class="step-body"><div class="step-title">Asignar grupos, permisos y rol</div><div class="step-desc">Se asigna al colaborador al <b>grupo(s) correspondiente(s)</b>. Los permisos se configuran granularmente: qué features puede ver, qué chats puede acceder y qué contenido está disponible para él.</div></div></div>
+        <div class="step"><div class="step-num n-purple">3</div><div class="step-body"><div class="step-title">Asignar un curso de onboarding</div><div class="step-desc">Desde el módulo de <b>Courses</b>, se asigna un curso de inducción. Puede incluir: videos, textos, quizzes y checklists de tareas. El manager puede seguir el progreso en tiempo real desde el dashboard.</div></div></div>
+        <div class="step"><div class="step-num n-purple">4</div><div class="step-body"><div class="step-title">Recopilación de documentos y formularios</div><div class="step-desc">El colaborador <b>sube su documentación directamente desde el celular</b>. Todos los documentos quedan organizados en su perfil, listos para aprobación de HR.</div></div></div>
+        <div class="step"><div class="step-num n-purple">5</div><div class="step-body"><div class="step-title">Integración al equipo: comunicación y directorio</div><div class="step-desc">El colaborador queda <b>añadido automáticamente</b> a los chats grupales correspondientes y al directorio de empresa. Se puede activar el módulo de <b>Celebrations</b> para anunciar su incorporación.</div></div></div>
+      </div>
+      <div class="access-box">
+        <div class="access-header partial-header"><span class="dot dot-partial"></span> Acceso limitado antes de la fecha de inicio: POSIBLE, con configuración manual</div>
+        <div class="access-body">Connecteam no tiene un modo de preboarding nativo con acceso automáticamente restringido por fecha. Sin embargo, su sistema de <b>permisos granular</b> permite crear un <b>grupo de "pre-ingreso"</b> con visibilidad limitada (solo curso de onboarding y formularios) y luego mover al colaborador al grupo real al inicio. Requiere configuración manual pero es flexible.</div>
+      </div>
+      <div class="screenshots">
+        <div class="screenshots-header">
+          <div class="screenshots-label">Capturas de pantalla</div>
+          <button class="screenshots-edit-btn" onclick="openGal(&#39;connecteam&#39;,&#39;c&#39;)"><svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Editar galería</button>
+        </div>
+        <div class="screenshots-grid" id="grid-connecteam"><div class="sc" id="sc-c1"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_20_46_p_m.png" alt="Captura 1" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 1</div></div><div class="sc" id="sc-c2"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_21_11_p_m.png" alt="Captura 2" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 2</div></div><div class="sc" id="sc-c3"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_21_30_p_m.png" alt="Captura 3" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 3</div></div><div class="sc" id="sc-c4"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_21_53_p_m.png" alt="Captura 4" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 4</div></div><div class="sc" id="sc-c5"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_22_35_p_m.png" alt="Captura 5" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 5</div></div><div class="sc" id="sc-c6"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_22_45_p_m.png" alt="Captura 6" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 6</div></div><div class="sc" id="sc-c7"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_22_59_p_m.png" alt="Captura 7" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 7</div></div><div class="sc" id="sc-c8"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_22_59_p_m.png" alt="Captura 8" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 8</div></div><div class="sc" id="sc-c9"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_26_32_p_m.png" alt="Captura 9" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 9</div></div><div class="sc" id="sc-c10"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_26_38_p_m.png" alt="Captura 10" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 10</div></div><div class="sc" id="sc-c11"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_30_05_p_m.png" alt="Captura 11" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 11</div></div><div class="sc" id="sc-c12"><img src="./Benchmark de Onboarding HR_claude_files/Captura_de_pantalla_2026_03_17_a_la(s)_1_31_20_p_m.png" alt="Captura 12" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(&#39;.sc&#39;).style.opacity=&#39;0.35&#39;"><div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===&#39;Enter&#39;){event.preventDefault();this.blur()}">Captura 12</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== LATTICE ====== -->
+  <div class="platform" id="lattice">
+    <div class="plat-card" id="content-lattice">
+      <div class="plat-header">
+        <div class="plat-title">🔴 Lattice</div>
+        <div class="plat-sub">Plataforma de performance + HRIS · Empresas medianas y en crecimiento</div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num n-coral">1</div><div class="step-body"><div class="step-title">Agregar al empleado a Lattice</div><div class="step-desc">El colaborador puede cargarse de tres formas: <b>manualmente</b> completando sus datos básicos, vía <b>importación CSV</b>, o automáticamente mediante una <b>integración con el ATS o HRIS</b> existente (BambooHR, Workday, ADP, Gusto, Personio, entre otros).</div></div></div>
+        <div class="step"><div class="step-num n-coral">2</div><div class="step-body"><div class="step-title">Seleccionar la plantilla de onboarding</div><div class="step-desc">Desde <b>Admin → Onboarding → Overview</b>, se localiza al nuevo ingresante en la sección <b>"Ready for Onboarding"</b> y se hace clic en "Onboard new employee". Se selecciona la <b>plantilla correspondiente</b> (configurable por tipo de empleo: full-time, part-time, contratista, temporal).</div></div></div>
+        <div class="step"><div class="step-num n-coral">3</div><div class="step-body"><div class="step-title">Configurar documentos, tareas y emails automáticos</div><div class="step-desc">Se revisan y ajustan: los <b>documentos</b> a firmar o cargar (con aprobadores configurables), las <b>tareas</b> asignadas a new hire, manager, admin u otros empleados, y los <b>emails automáticos</b> pre y post inicio (los anteriores al día 1 van al email personal; los posteriores, al email laboral).</div></div></div>
+        <div class="step"><div class="step-num n-coral">4</div><div class="step-body"><div class="step-title">Lanzar el onboarding e invitar al colaborador</div><div class="step-desc">Al hacer clic en <b>"Start Onboarding"</b>, Lattice envía automáticamente una invitación. El admin puede <b>elegir retrasar el envío de la invitación</b>: el onboarding queda en estado <b>"Upcoming"</b> hasta que HR decida activarlo.</div></div></div>
+        <div class="step"><div class="step-num n-coral">5</div><div class="step-body"><div class="step-title">El empleado completa su flujo de onboarding</div><div class="step-desc">El colaborador ingresa a Lattice y avanza por etapas: completa su perfil, carga y firma documentos, y ejecuta las tareas asignadas. Una vez superada la fecha de inicio, accede al módulo completo de <b>Talent</b>: 1:1s programados, objetivos de onboarding, metas de performance y ciclos de review.</div></div></div>
+      </div>
+      <div class="access-box">
+        <div class="access-header partial-header"><span class="dot dot-partial"></span> Acceso limitado antes de la fecha de inicio: PARCIAL, con control nativo básico</div>
+        <div class="access-body">Lattice ofrece <b>control parcial y nativo</b> sobre el acceso pre-inicio. Al lanzar el onboarding, el admin puede <b>retrasar explícitamente el envío de la invitación</b>: el colaborador queda en estado "Upcoming" sin acceso a la plataforma. Una vez invitado, el nuevo ingresante opera bajo el <b>rol de sistema "Onboarding"</b>, con permisos reducidos para completar campos, documentos y tareas; estos permisos se <b>eliminan automáticamente</b> una vez completado el onboarding. No existe un modo de preboarding cultural comparable al de Hibob o Factorial.</div>
+      </div>
+      <div class="screenshots">
+        <div class="screenshots-header">
+          <div class="screenshots-label">Capturas de pantalla</div>
+          <button class="screenshots-edit-btn" onclick="openGal(&#39;lattice&#39;,&#39;l&#39;)"><svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Editar galería</button>
+        </div>
+        <div class="screenshots-grid" id="grid-lattice">
+          <div class="sc-empty-state"><svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"></rect><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg><span>Hacé clic en “Editar galería” para agregar imágenes</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Basado en documentación oficial y reseñas verificadas en Capterra, G2, Gartner y fuentes especializadas · 2025–2026</div>
+</div>
+
+<script>
+var current = 'factorial';
+var _galPlatId = null;
+var _galPrefix  = null;
+var galData = {};
+
+function show(id, btn) {
+  document.querySelectorAll('.tab').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelectorAll('.platform').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+  current = id;
+}
+
+function openGal(platId, prefix) {
+  _galPlatId = platId;
+  _galPrefix  = prefix;
+  var titleEl = document.querySelector('#' + platId + ' .plat-title');
+  var title = titleEl ? titleEl.textContent : platId;
+  document.getElementById('galSub').textContent =
+    'Pegá los links de hasta 12 imágenes para ' + title + '. Dejá vacíos los que no uses.';
+  var container = document.getElementById('galInputs');
+  container.innerHTML = '';
+  var existing = galData[platId] || [];
+  for (var i = 0; i < 12; i++) {
+    container.appendChild(makeGalRow(i + 1, existing[i] || ''));
+  }
+  document.getElementById('galBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){ var f = container.querySelector('.gal-input'); if(f) f.focus(); }, 120);
+}
+
+function makeGalRow(num, value) {
+  var row = document.createElement('div');
+  row.className = 'gal-row';
+  row.draggable = false;
+
+  // Top row: handle + label
+  var top = document.createElement('div');
+  top.className = 'gal-row-top';
+
+  var handle = document.createElement('div');
+  handle.className = 'gal-drag-handle';
+  handle.title = 'Mover';
+  handle.innerHTML = '<svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="4" cy="2" r="1" fill="currentColor"/><circle cx="8" cy="2" r="1" fill="currentColor"/><circle cx="4" cy="6" r="1" fill="currentColor"/><circle cx="8" cy="6" r="1" fill="currentColor"/><circle cx="4" cy="10" r="1" fill="currentColor"/><circle cx="8" cy="10" r="1" fill="currentColor"/></svg>';
+  handle.addEventListener('mousedown', function() { row.draggable = true; });
+  handle.addEventListener('mouseup',   function() { row.draggable = false; });
+
+  var lbl = document.createElement('div');
+  lbl.className = 'gal-row-num';
+  lbl.textContent = 'Imagen ' + num;
+
+  top.appendChild(handle);
+  top.appendChild(lbl);
+
+  var inp = document.createElement('input');
+  inp.className = 'gal-input';
+  inp.type = 'text';
+  inp.placeholder = 'https://...';
+  inp.value = value;
+
+  row.appendChild(top);
+  row.appendChild(inp);
+
+  // Drag events
+  row.addEventListener('dragstart', function(e) {
+    e.dataTransfer.effectAllowed = 'move';
+    row.classList.add('dragging');
+    row._dragData = inp.value;
+  });
+  row.addEventListener('dragend', function() {
+    row.draggable = false;
+    row.classList.remove('dragging');
+    document.querySelectorAll('#galInputs .gal-row').forEach(function(r){ r.classList.remove('drag-over'); });
+    renumberGalRows();
+  });
+  row.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    row.classList.add('drag-over');
+  });
+  row.addEventListener('dragleave', function() {
+    row.classList.remove('drag-over');
+  });
+  row.addEventListener('drop', function(e) {
+    e.preventDefault();
+    row.classList.remove('drag-over');
+    var dragging = document.querySelector('#galInputs .gal-row.dragging');
+    if (!dragging || dragging === row) return;
+    var container = document.getElementById('galInputs');
+    var rows = Array.from(container.children);
+    var fromIdx = rows.indexOf(dragging);
+    var toIdx   = rows.indexOf(row);
+    if (fromIdx < toIdx) {
+      container.insertBefore(dragging, row.nextSibling);
+    } else {
+      container.insertBefore(dragging, row);
+    }
+  });
+
+  return row;
+}
+
+function renumberGalRows() {
+  document.querySelectorAll('#galInputs .gal-row').forEach(function(row, i) {
+    var lbl = row.querySelector('.gal-row-num');
+    if (lbl) lbl.textContent = 'Imagen ' + (i + 1);
+  });
+}
+
+function closeGal() {
+  document.getElementById('galBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeGalBg(e) {
+  if (e.target === document.getElementById('galBackdrop')) closeGal();
+}
+
+function clearGal() {
+  document.querySelectorAll('#galInputs .gal-input').forEach(function(i){ i.value = ''; });
+}
+
+function generateGallery() {
+  var inputs = document.querySelectorAll('#galInputs .gal-input');
+  var urls = [];
+  inputs.forEach(function(inp){ var v = inp.value.trim(); if (v) urls.push(v); });
+  galData[_galPlatId] = urls;
+  var grid = document.getElementById('grid-' + _galPlatId);
+  grid.innerHTML = '';
+  if (urls.length === 0) {
+    grid.innerHTML =
+      '<div class="sc-empty-state">' +
+      '<svg width="32" height="32" fill="none" viewBox="0 0 24 24">' +
+      '<rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>' +
+      '<path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+      '</svg><span>Hacé clic en "Editar galería" para agregar imágenes</span></div>';
+    closeGal(); return;
+  }
+  urls.forEach(function(url, i) {
+    var sc = document.createElement('div');
+    sc.className = 'sc';
+    sc.id = 'sc-' + _galPrefix + (i + 1);
+    var caption = 'Captura ' + (i + 1);
+    sc.innerHTML =
+      '<img src="' + url + '" alt="' + caption + '" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.closest(\'.sc\').style.opacity=\'0.35\'">' +
+      '<div class="sc-overlay"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
+      '<div class="sc-caption" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key===\'Enter\'){event.preventDefault();this.blur()}">' + caption + '</div>';
+    sc.onclick = (function(el){ return function(){ openLightbox(el); }; })(sc);
+    grid.appendChild(sc);
+  });
+  closeGal();
+}
+
+function openLightbox(el) {
+  var img = el.querySelector('img');
+  if (!img) return;
+  var caption = el.querySelector('.sc-caption') ? el.querySelector('.sc-caption').textContent : '';
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lb-img').alt = img.alt;
+  document.getElementById('lb-caption').textContent = caption;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxBg(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeLightbox(); closeGal(); }
+});
+
+function copyContent() {
+  var el  = document.getElementById('content-' + current);
+  var btn = document.getElementById('copyBtn');
+  function extractText(node) {
+    var text = '';
+    for (var i = 0; i < node.childNodes.length; i++) {
+      var child = node.childNodes[i];
+      if (child.nodeType === Node.TEXT_NODE) text += child.textContent;
+      else if (child.nodeType === Node.ELEMENT_NODE) {
+        var tag = child.tagName.toLowerCase();
+        if (tag === 'b') text += child.textContent;
+        else if (tag === 'br') text += '\n';
+        else if (tag === 'div' || tag === 'p') { var inner = extractText(child); if (inner.trim()) text += inner + '\n'; }
+        else text += extractText(child);
+      }
+    }
+    return text;
+  }
+  var platTitle = el.querySelector('.plat-title') ? el.querySelector('.plat-title').textContent : '';
+  var platSub   = el.querySelector('.plat-sub')   ? el.querySelector('.plat-sub').textContent   : '';
+  var sep = Array(51).join('\u2500');
+  var output = platTitle + '\n' + platSub + '\n' + sep + '\n\n';
+  el.querySelectorAll('.step').forEach(function(step, i) {
+    var title = step.querySelector('.step-title') ? step.querySelector('.step-title').textContent : '';
+    var desc  = extractText(step.querySelector('.step-desc')).trim();
+    output += 'Paso ' + (i + 1) + ': ' + title + '\n' + desc + '\n\n';
+  });
+  var aH = el.querySelector('.access-header') ? el.querySelector('.access-header').textContent.trim() : '';
+  var aB = extractText(el.querySelector('.access-body')).trim();
+  output += sep + '\n' + aH + '\n\n' + aB + '\n';
+  navigator.clipboard.writeText(output).then(function() {
+    btn.classList.add('copied');
+    btn.textContent = 'Copiado!';
+    setTimeout(function() {
+      btn.classList.remove('copied');
+      btn.textContent = 'Copiar al portapapeles';
+    }, 2500);
+  });
+}
+</script>
+
+
+
+</body></html>
